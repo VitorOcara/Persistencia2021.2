@@ -1,10 +1,10 @@
-package com.example.atv_05;
+package com.example.Atv_06;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Atv05ApplicationTests {
+class PrincipalTests {
 
 	@Test
 	void contextLoads() {
