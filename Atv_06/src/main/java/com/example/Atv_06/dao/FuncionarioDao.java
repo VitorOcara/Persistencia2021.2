@@ -1,6 +1,7 @@
-package com.example.atv_05.dao;
+package com.example.Atv_06.dao;
 
-import com.example.atv_05.model.Funcionario;
+import com.example.Atv_06.model.Funcionario;
+
 
 import java.sql.SQLException;
 import java.util.List;

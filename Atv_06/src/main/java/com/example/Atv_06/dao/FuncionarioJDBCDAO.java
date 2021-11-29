@@ -1,10 +1,10 @@
-package com.example.atv_05.dao;
+package com.example.Atv_06.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.example.atv_05.model.Funcionario;
+import com.example.Atv_06.model.Funcionario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -12,7 +12,6 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 
-@Repository
 public class FuncionarioJDBCDAO implements FuncionarioDao{
 
     @Autowired
