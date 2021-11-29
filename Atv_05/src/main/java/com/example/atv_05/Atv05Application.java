@@ -1,11 +1,10 @@
 package com.example.atv_05;
 
 import com.example.atv_05.dao.FuncionarioDao;
-import com.example.atv_05.dao.FuncionarioJDBCDAO;
+
 import com.example.atv_05.model.Funcionario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
@@ -23,9 +22,6 @@ public class Atv05Application implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(Atv05Application.class);
 		builder.headless(false).run(args);
-
-//		SpringApplication.run(Atv05Application.class, args);
-//		System.out.println("hello world");
 	}
 	public void listaFuncionarios(List<Funcionario> funcionarios) {
 		List<String> dados = new ArrayList<>();
@@ -42,9 +38,6 @@ public class Atv05Application implements CommandLineRunner {
 			dados.add(separator);
 		}
 		JOptionPane.showMessageDialog(null,dados);
-	}
-	public Funcionario returnFuncionario(int id) throws SQLException {
-		return funcionarioDAO.find(id);
 	}
 
 	public void listaFuncionario(int id) throws SQLException {

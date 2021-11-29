@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface FuncionarioDao {
 
-    public void insert(Funcionario funcionario) throws SQLException;
-    public void delete(int id)throws SQLException;
-    public List<Funcionario> find()throws SQLException;
-    public Funcionario find(int id)throws SQLException;
-    public void update(Funcionario funcionario)throws SQLException;
+    void insert(Funcionario funcionario) throws SQLException;
+    void delete(int id)throws SQLException;
+    List<Funcionario> find()throws SQLException;
+    Funcionario find(int id)throws SQLException;
+    void update(Funcionario funcionario)throws SQLException;
 }
