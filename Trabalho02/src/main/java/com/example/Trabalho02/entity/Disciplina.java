@@ -1,7 +1,6 @@
-package com.example.Trabalho_02.entity;
+package com.example.Trabalho02.entity;
 
 import lombok.*;
-
 import javax.persistence.*;
 
 @Entity
