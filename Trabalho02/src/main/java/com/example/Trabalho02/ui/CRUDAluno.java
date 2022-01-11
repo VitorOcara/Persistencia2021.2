@@ -1,5 +1,8 @@
 package com.example.Trabalho02.ui;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -28,19 +31,24 @@ public class CRUDAluno implements CommandLineRunner {
         builder.headless(false).run(args);
     }
 
-    public static void obterCliente(Aluno cl) {
+    public void obterAluno(Aluno cl) throws ParseException {
         String nome = JOptionPane.showInputDialog("Nome", cl.getNome());
         String cpf = JOptionPane.showInputDialog("CPF", cl.getCpf());
         String email = JOptionPane.showInputDialog("email", cl.getEmail());
         String matricula = JOptionPane.showInputDialog("Matrícula", cl.getMatricula());
+        String data = JOptionPane.showInputDialog("Digite a data de nascimento do aluno a ser buscada", cl.getDatanascimento());
+        java.util.Date dd = new SimpleDateFormat("dd/MM/yyyy").parse(data);
 
+
+        cl.setDatanascimento(alterDate(dd));
         cl.setMatricula(matricula);
         cl.setNome(nome);
         cl.setCpf(cpf);
         cl.setEmail(email);
+
     }
 
-    public static void listaClientes(List<Aluno> alunos) {
+    public static void listaAlunos(List<Aluno> alunos) {
         StringBuilder listagem = new StringBuilder();
         for(Aluno cl : alunos) {
             listagem.append(cl).append("\n");
@@ -63,6 +71,7 @@ public class CRUDAluno implements CommandLineRunner {
                 "4 - Exibir por id\n" +
                 "5 - Exibir todos\n" +
                 "6 - Exibir email e Nome por Matricula\n"+
+                "7 - Exibir a partir de uma data de Nascimeto\n"+
                 "9 - Sair";
         char opcao;
         do {
@@ -72,13 +81,13 @@ public class CRUDAluno implements CommandLineRunner {
             switch (opcao) {
                 case '1':     // Inserir
                     cl = new Aluno();
-                    obterCliente(cl);
+                    obterAluno(cl);
                     baseAlunos.save(cl);
                     break;
                 case '2':     // Atualizar por id
                     id = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do aluno a ser alterado"));
                     cl = baseAlunos.findFistByid(id);
-                    obterCliente(cl);
+                    obterAluno(cl);
                     baseAlunos.save(cl);
                     break;
                 case '3':     // Remover por id
@@ -96,14 +105,17 @@ public class CRUDAluno implements CommandLineRunner {
                     listaCliente(cl);
                     break;
                 case '5':     // Exibir todos
-                    listaClientes(baseAlunos.findAll());
+                    listaAlunos(baseAlunos.findAll());
                     break;
                 case '6':
                    String matricula = JOptionPane.showInputDialog("Digite a Matricula do aluno a ser buscada");
                     cl = baseAlunos.findFistByMatricula(matricula);
                     JOptionPane.showMessageDialog(null,"Nome: "+ cl.getNome()+
                             "\nEmail :" + cl.getEmail());
-
+                case '7':
+                    String data = JOptionPane.showInputDialog("Digite a data de nascimento do aluno a ser buscada");
+                    java.util.Date dd = new SimpleDateFormat("dd/MM/yyyy").parse(data);
+                    listaAlunos(baseAlunos.findAlunosByDatanascimento(alterDate(dd)));
                 case '9':
                     break;
                 default:
@@ -112,5 +124,11 @@ public class CRUDAluno implements CommandLineRunner {
             }
 
         } while(opcao != '9');
+    }
+    public  java.sql.Date alterDate(java.util.Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = simpleDateFormat.format(date);
+        return java.sql.Date.valueOf(formattedDate);
+
     }
 }

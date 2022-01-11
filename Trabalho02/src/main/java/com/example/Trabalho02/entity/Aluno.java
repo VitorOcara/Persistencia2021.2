@@ -2,9 +2,10 @@ package com.example.Trabalho02.entity;
 
 import lombok.*;
 
-import java.util.*;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.*;
 
 
 
@@ -13,11 +14,12 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
-@ToString
+@ToString(exclude = "associacoes")
 
 @NamedQuery(name = "alunoPorCpf", query = "select a from Aluno a where a.cpf = :cpf")
 @NamedQuery(name = "alunoPorId", query = "select a from Aluno a where a.id = :id")
 @NamedQuery(name = "alunoPorMatricula", query = "select a from Aluno a where a.matricula = :matricula")
+
 
 
 public class Aluno {
@@ -30,7 +32,7 @@ public class Aluno {
     @NonNull @Getter @Setter private String cpf;
     @NonNull @Getter @Setter private Date datanascimento;
 
-    @Transient
-    @NonNull @Getter @Setter private String[] disciplinascursadas;
+    @OneToMany(mappedBy = "aluno")
+    @Getter @Setter private List<Disciplina> associacoes;
 
 }

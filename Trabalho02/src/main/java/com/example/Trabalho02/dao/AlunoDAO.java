@@ -1,5 +1,6 @@
 package com.example.Trabalho02.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.example.Trabalho02.entity.Aluno;
@@ -20,4 +21,6 @@ public interface AlunoDAO extends JpaRepository<Aluno, Integer> {
     @Query(name ="alunoPormatricula")
     public Aluno findFistByMatricula(String str);
 
+    @Query ("select a from Aluno a where a.datanascimento >= :data Order By datanascimento")
+    public List<Aluno> findAlunosByDatanascimento(Date data);
 }
