@@ -14,7 +14,7 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
-@ToString(exclude = "associacoes")
+@ToString
 
 @NamedQuery(name = "alunoPorCpf", query = "select a from Aluno a where a.cpf = :cpf")
 @NamedQuery(name = "alunoPorId", query = "select a from Aluno a where a.id = :id")
@@ -32,7 +32,9 @@ public class Aluno {
     @NonNull @Getter @Setter private String cpf;
     @NonNull @Getter @Setter private Date datanascimento;
 
-    @OneToMany(mappedBy = "aluno")
-    @Getter @Setter private List<Disciplina> associacoes;
 
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "aluno")
+    @Getter @Setter private List<Relacao> relacaos;
 }

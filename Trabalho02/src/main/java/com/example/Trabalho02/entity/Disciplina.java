@@ -2,6 +2,7 @@ package com.example.Trabalho02.entity;
 
 import lombok.*;
 import javax.persistence.*;
+import java.util.*;
 
 @Entity
 @Table(name = "disciplinas")
@@ -16,15 +17,4 @@ public class Disciplina {
     @NonNull @Getter @Setter private String nome;
     @NonNull @Getter @Setter private String codigo;
 
-    @ManyToOne
-    @JoinColumn(name = "aluno_id")
-    private Aluno aluno;
-
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
 }

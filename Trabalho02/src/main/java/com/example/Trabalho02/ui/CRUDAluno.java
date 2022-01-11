@@ -8,7 +8,10 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import com.example.Trabalho02.dao.AlunoDAO;
+
+import com.example.Trabalho02.dao.DisciplinaDAO;
 import com.example.Trabalho02.entity.Aluno;
+import com.example.Trabalho02.entity.Disciplina;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,10 +29,10 @@ public class CRUDAluno implements CommandLineRunner {
     private AlunoDAO baseAlunos;
 
     public static void main(String[] args) {
-        //SpringApplication.run(Principal.class, args);
         SpringApplicationBuilder builder = new SpringApplicationBuilder(CRUDAluno.class);
         builder.headless(false).run(args);
     }
+
 
     public void obterAluno(Aluno cl) throws ParseException {
         String nome = JOptionPane.showInputDialog("Nome", cl.getNome());
@@ -116,8 +119,7 @@ public class CRUDAluno implements CommandLineRunner {
                     String data = JOptionPane.showInputDialog("Digite a data de nascimento do aluno a ser buscada");
                     java.util.Date dd = new SimpleDateFormat("dd/MM/yyyy").parse(data);
                     listaAlunos(baseAlunos.findAlunosByDatanascimento(alterDate(dd)));
-                case '9':
-                    break;
+
                 default:
                     JOptionPane.showMessageDialog(null, "Opção Inválida");
                     break;
