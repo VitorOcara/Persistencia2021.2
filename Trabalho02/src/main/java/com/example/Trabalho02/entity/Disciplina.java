@@ -17,4 +17,8 @@ public class Disciplina {
     @NonNull @Getter @Setter private String nome;
     @NonNull @Getter @Setter private String codigo;
 
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "disciplina")
+    @Getter @Setter private List<Relacao> relacaos;
 }
